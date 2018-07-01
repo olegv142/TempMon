@@ -12,17 +12,24 @@ void WeekStat::update(int t, int active)
 			m_min[i] = t;
 			m_max[i] = t;
 			m_active[i] = 0;
+			m_total[i] = 0;
+			m_count[i] = 0;
 		}
-	} else if (m_day != d) {
+	}
+	if (m_day != d) {
 		// Day changed
 		m_min[d] = t;
 		m_max[d] = t;    
 		m_active[d] = active;
+		m_total[d] = t;
+		m_count[d] = 1;
 	} else {
 		// Update current day
 		if (m_min[d] > t) m_min[d] = t;
 		if (m_max[d] < t) m_max[d] = t;
 		m_active[d] += active;
+		m_total[d] += t;
+		m_count[d] += 1;
 	}
 	m_day = d;
 }
@@ -45,6 +52,20 @@ int WeekStat::maximum()
 		if (m_max[i] > t) t = m_max[i];
 	}
 	return t;
+}
+
+	// Returns mean value
+int WeekStat::mean()
+{
+	long total = 0, count = 0;
+	for (int i = 0; i < 7; ++i) {
+		total += m_total[i];
+		count += m_count[i];
+	}
+	if (!count) {
+		return 0;
+	}
+	return total / count;
 }
 
 // Returns activity count 

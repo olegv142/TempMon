@@ -44,7 +44,7 @@ void loop()
 
   int active_h = g_stat.active_count() / (3600 / PERIOD);
   String t_active_str = String(active_h) + String(" h");
-  String t_min_max_str = String(g_stat.minimum()) + String(" .. ") + String(g_stat.maximum());
+  String t_min_max_str = String(g_stat.minimum()) + String(" .. ") + String(g_stat.mean()) + String(" .. ") + String(g_stat.maximum());
   glcd_print_str_r(&g_display, TEMP_W, 0, DISPLAY_W-TEMP_W, t_active_str.c_str(),  &g_font_Tahoma15x16, 1);
   glcd_print_str_r(&g_display, 0, 6, DISPLAY_W, t_min_max_str.c_str(), &g_font_Tahoma15x16, 1);
 

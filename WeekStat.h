@@ -16,12 +16,17 @@ public:
 	// Returns maximum value
 	int maximum();
 
+	// Returns mean value
+	int mean();
+
 	// Returns activity count 
 	int active_count();
 
 private:
-	int m_min[7];
-	int m_max[7];
-	int m_active[7];
-	int m_day;
+	int  m_min[7];
+	int  m_max[7];
+	long m_total[7];
+	long m_count[7];
+	int  m_active[7];
+	int  m_day;
 };
